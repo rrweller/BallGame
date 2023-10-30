@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://cywsbf0b3jj0f"]
+
+[ext_resource type="Script" path="res://GameView.gd" id="1_88n8s"]
+[ext_resource type="Script" path="res://ScoreLabel.gd" id="2_rxoix"]
+
+[sub_resource type="Environment" id="Environment_07ikw"]
+background_mode = 1
+background_color = Color(0.890196, 0.282353, 0.407843, 1)
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_o7okm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kewdj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_koj44"]
+a = Vector2(400, 0)
+b = Vector2(400, -550)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6kyou"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ichnl"]
+b = Vector2(400, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fa5o4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wo1ge"]
+a = Vector2(0, -550)
+b = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2esk"]
+size = Vector2(400, 12)
+
+[sub_resource type="Theme" id="Theme_cywla"]
+default_font_size = 25
+
+[sub_resource type="FontFile" id="FontFile_vxnmw"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4bjt"]
+font = SubResource("FontFile_vxnmw")
+font_color = Color(0.858824, 0.733333, 0.0901961, 1)
+
+[node name="default" type="Node2D"]
+script = ExtResource("1_88n8s")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_07ikw")
+camera_attributes = SubResource("CameraAttributesPhysical_o7okm")
+
+[node name="Box" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Line2D" type="Line2D" parent="Box"]
+points = PackedVector2Array(0, -550, 0, 0, 400, 0, 400, -550)
+width = 4.0
+
+[node name="RightWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_kewdj")
+
+[node name="RightWallCollision" type="CollisionShape2D" parent="Box/Line2D/RightWall"]
+shape = SubResource("SegmentShape2D_koj44")
+one_way_collision_margin = 2.0
+
+[node name="BottomWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_6kyou")
+
+[node name="BottomWallCollision" type="CollisionShape2D" parent="Box/Line2D/BottomWall"]
+shape = SubResource("SegmentShape2D_ichnl")
+one_way_collision_margin = 2.0
+
+[node name="LeftWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_fa5o4")
+
+[node name="LeftWallCollision" type="CollisionShape2D" parent="Box/Line2D/LeftWall"]
+shape = SubResource("SegmentShape2D_wo1ge")
+one_way_collision_margin = 2.0
+
+[node name="TopBar" type="Area2D" parent="Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box/TopBar"]
+z_index = -1
+position = Vector2(200, -506)
+shape = SubResource("RectangleShape2D_i2esk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(200, -280)
+zoom = Vector2(1.1, 1.1)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_cywla")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+offset_left = 150.0
+offset_top = -570.0
+offset_right = 219.0
+offset_bottom = -544.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_n4bjt")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_rxoix")

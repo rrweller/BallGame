@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ntfnjfy7o0m"]
+
+[ext_resource type="Texture2D" uid="uid://drqdfsopsaua2" path="res://balls/ball88.png" id="1_hdcw5"]
+[ext_resource type="Script" path="res://balls/ball88.gd" id="1_inpss"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qh1w8"]
+radius = 44.0
+
+[node name="Ball" type="RigidBody2D"]
+gravity_scale = 0.5
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_inpss")
+metadata/point = 32
+
+[node name="BallCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qh1w8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hdcw5")

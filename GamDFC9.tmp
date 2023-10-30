@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cywsbf0b3jj0f"]
+
+[ext_resource type="Script" path="res://GameView.gd" id="1_88n8s"]
+
+[sub_resource type="Environment" id="Environment_07ikw"]
+background_mode = 1
+background_color = Color(0.890196, 0.282353, 0.407843, 1)
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_o7okm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kewdj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_koj44"]
+a = Vector2(400, 0)
+b = Vector2(400, -550)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6kyou"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ichnl"]
+b = Vector2(300, 0)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fa5o4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wo1ge"]
+a = Vector2(0, -550)
+b = Vector2(0, 0)
+
+[node name="default" type="Node2D"]
+script = ExtResource("1_88n8s")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_07ikw")
+camera_attributes = SubResource("CameraAttributesPhysical_o7okm")
+
+[node name="Box" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Line2D" type="Line2D" parent="Box"]
+points = PackedVector2Array(0, -550, 0, 0, 400, 0, 400, -550)
+width = 4.0
+
+[node name="RightWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_kewdj")
+
+[node name="RightWallCollison" type="CollisionShape2D" parent="Box/Line2D/RightWall"]
+shape = SubResource("SegmentShape2D_koj44")
+
+[node name="BottomWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_6kyou")
+
+[node name="BottomWallCollision" type="CollisionShape2D" parent="Box/Line2D/BottomWall"]
+shape = SubResource("SegmentShape2D_ichnl")
+
+[node name="LeftWall" type="StaticBody2D" parent="Box/Line2D"]
+physics_material_override = SubResource("PhysicsMaterial_fa5o4")
+
+[node name="LeftWallCollision" type="CollisionShape2D" parent="Box/Line2D/LeftWall"]
+shape = SubResource("SegmentShape2D_wo1ge")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(200, -274)
+zoom = Vector2(1.12, 1.12)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
