@@ -11,3 +11,14 @@ res://balls/ball144.tscn
 res://balls/ball168.tscn
 res://balls/ball216.tscn
 res://GameView.gd
+res://ScoreLabel.gd
+res://ball_physics_mat.tres
+res://balls/ball32.gd
+res://balls/ball48.gd
+res://balls/ball64.gd
+res://balls/ball76.gd
+res://balls/ball88.gd
+res://balls/ball104.gd
+res://balls/ball120.gd
+res://balls/ball144.gd
+res://balls/ball168.gd

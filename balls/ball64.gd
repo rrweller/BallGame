@@ -24,10 +24,10 @@ func handle_collision(body):
 	
 	var thisball_radius = self.get_node("BallCollision").shape.get_radius()
 	var otherball_radius = body.get_node("BallCollision").shape.get_radius()
-	print("COLLISION: Ball of size: ", thisball_radius, " collided with ball of size ", otherball_radius)
+	#print("COLLISION: Ball of size: ", thisball_radius, " collided with ball of size ", otherball_radius)
 	
 	if thisball_radius != otherball_radius:
-		print("Balls were not the same size, not merging")
+		#print("Balls were not the same size, not merging")
 		return
 	
 	body.queue_free()
@@ -46,7 +46,7 @@ func handle_collision(body):
 			next_ball.global_position = new_ball_position
 			next_ball.size = size + 1
 			get_parent().add_child.call_deferred(next_ball)
-			print("\n=====MERGING=====\nCombining balls of radius ", thisball_radius, " and ", otherball_radius, " into ball of size: ", next_ball.size)
+			#print("\n=====MERGING=====\nCombining balls of radius ", thisball_radius, " and ", otherball_radius, " into ball of size: ", next_ball.size)
 
 	SignalBus.ball_removed.emit(size)
 	
@@ -80,7 +80,7 @@ func disable_physics():
 	collision_mask = 0
 
 func enable_physics():
-	gravity_scale = 1
+	gravity_scale = 0.5
 	collision_layer = 1
 	collision_mask = 1
 	

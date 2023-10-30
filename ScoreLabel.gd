@@ -9,4 +9,5 @@ func _ready() -> void:
 
 func update_score(size: int):
 	current_score += size * size
-	text = str(current_score)
+	text = "Score: %d" % current_score
+	print("Score is now: ", current_score)

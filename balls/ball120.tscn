@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4lo8ydtq4wtl"]
+[gd_scene load_steps=5 format=3 uid="uid://d4lo8ydtq4wtl"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://be3718lm5u8ou" path="res://ball_physics_mat.tres" id="1_64qco"]
 [ext_resource type="Script" path="res://balls/ball120.gd" id="1_oedgx"]
 [ext_resource type="Texture2D" uid="uid://ceh5rjsmyb58y" path="res://balls/ball120.png" id="1_tclft"]
 
@@ -7,11 +8,12 @@
 radius = 60.0
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
-gravity_scale = 0.5
+mass = 1.1
+physics_material_override = ExtResource("1_64qco")
+gravity_scale = 0.2
 max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_oedgx")
-metadata/point = 128
 metadata/size = 7
 
 [node name="BallCollision" type="CollisionShape2D" parent="."]
