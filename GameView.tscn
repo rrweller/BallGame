@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cywsbf0b3jj0f"]
+[gd_scene load_steps=16 format=3 uid="uid://cywsbf0b3jj0f"]
 
 [ext_resource type="Script" path="res://GameView.gd" id="1_88n8s"]
+[ext_resource type="Texture2D" uid="uid://c1yt4ihs1rcr0" path="res://topbar.png" id="2_ivt66"]
 [ext_resource type="Script" path="res://ScoreLabel.gd" id="2_rxoix"]
 
 [sub_resource type="Environment" id="Environment_07ikw"]
@@ -88,6 +89,10 @@ z_index = -1
 position = Vector2(200, -506)
 shape = SubResource("RectangleShape2D_i2esk")
 
+[node name="Sprite2D" type="Sprite2D" parent="Box/TopBar"]
+position = Vector2(200, -506)
+texture = ExtResource("2_ivt66")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(200, -280)
 zoom = Vector2(1.1, 1.1)
@@ -103,6 +108,7 @@ offset_bottom = 40.0
 theme = SubResource("Theme_cywla")
 
 [node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 0
 offset_left = 150.0
 offset_top = -570.0
 offset_right = 219.0
