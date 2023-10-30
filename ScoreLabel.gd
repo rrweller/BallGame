@@ -7,7 +7,7 @@ func _ready() -> void:
 	SignalBus.ball_removed.connect(update_score)
 
 
-func update_score(size: int):
-	current_score += size * size
+func update_score(ballsize: int):
+	current_score += ballsize * ballsize
 	text = "Score: %d" % current_score
 	print("Score is now: ", current_score)

@@ -57,7 +57,7 @@ func _ready():
 	set_process(true)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta) -> void:
 	if is_game_over:
 		return
 	if current_ball != null:
@@ -68,12 +68,12 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed('drop'):
 			drop_ball()
 
-func create_ball(position):
+func create_ball(ball_pos):
 	if ball_scenes.size():
 		var BallScene = weighted_random_choice(ball_scenes)
 		var ball = BallScene.instantiate()
 		ball.disable_physics()
-		ball.global_position = position
+		ball.global_position = ball_pos
 		add_child(ball)
 		
 		for i in weights.size():
@@ -106,7 +106,7 @@ func detect_game_over(height: float):
 		await get_tree().create_timer(5).timeout
 		get_tree().reload_current_scene()
 		
-func weighted_random_choice(ball_scenes):
+func weighted_random_choice(spawnable_balls):
 	var total_weight = 0
 	for i in weights.size():
 		if weights[i]:
@@ -115,10 +115,10 @@ func weighted_random_choice(ball_scenes):
 	var random_num = randf() * total_weight
 	var weight_sum = 0.0
 	
-	for i in range(ball_scenes.size()):
+	for i in range(spawnable_balls.size()):
 		weight_sum += weights[i]
 		if random_num < weight_sum:
-			return ball_scenes[i]
+			return spawnable_balls[i]
 
 #sorts balls by size
 func compare_radii(a,b):
