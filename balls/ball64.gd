@@ -10,7 +10,6 @@ var BallScene
 
 func _ready() -> void:
 	size = self.get_meta("size")
-	print("Ball size is: ", size)
 	load_balls()
 	body_entered.connect(handle_collision)
 
@@ -19,14 +18,16 @@ func handle_collision(body):
 		return
 	if not body.is_in_group('balls'):
 		return
-	
+		
 	var new_ball_position = (global_position + body.global_position) / 2
 	SignalBus.collided.emit(new_ball_position.y)
 	
 	var thisball_radius = self.get_node("BallCollision").shape.get_radius()
 	var otherball_radius = body.get_node("BallCollision").shape.get_radius()
+	print("COLLISION: Ball of size: ", thisball_radius, " collided with ball of size ", otherball_radius)
 	
 	if thisball_radius != otherball_radius:
+		print("Balls were not the same size, not merging")
 		return
 	
 	body.queue_free()
@@ -45,31 +46,9 @@ func handle_collision(body):
 			next_ball.global_position = new_ball_position
 			next_ball.size = size + 1
 			get_parent().add_child.call_deferred(next_ball)
+			print("\n=====MERGING=====\nCombining balls of radius ", thisball_radius, " and ", otherball_radius, " into ball of size: ", next_ball.size)
 
 	SignalBus.ball_removed.emit(size)
-
-#REFERENCE
-func create_ball(position):
-	if ball_scenes.size():
-		var BallScene = ball_scenes[randi() % ball_scenes.size()]
-		var ball = BallScene.instantiate()
-		ball.disable_physics()
-		ball.global_position = position
-		add_child(ball)
-		return ball
-	else:
-		print("Error with ball_scenes.size()")
-
-func disable_physics():
-	gravity_scale = 0
-	collision_layer = 0
-	collision_mask = 0
-
-
-func enable_physics():
-	gravity_scale = 1
-	collision_layer = 1
-	collision_mask = 1
 	
 func load_balls():
 	var directory = DirAccess.open(dir)
@@ -89,11 +68,21 @@ func load_balls():
 			file_name = directory.get_next()
 		directory.list_dir_end()
 	
-	#sort balls by size and keep 5 smallest
+	#sort balls by size
 	ball_sizes.sort_custom(Callable(self, "compare_radii"))
 
-	for i in range(min(ball_sizes.size(), 5)):
+	for i in range(ball_sizes.size()):
 		ball_scenes.append(ball_sizes[i]["scene"])		
+
+func disable_physics():
+	gravity_scale = 0
+	collision_layer = 0
+	collision_mask = 0
+
+func enable_physics():
+	gravity_scale = 1
+	collision_layer = 1
+	collision_mask = 1
 	
 func compare_radii(a,b):
 	return a.radius < b.radius

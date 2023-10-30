@@ -41,7 +41,6 @@ func _ready():
 
 	for i in range(min(ball_sizes.size(), 5)):
 		ball_scenes.append(ball_sizes[i]["scene"])
-		print("ball_scenes.size() is: ", ball_scenes.size())
 	
 	current_ball = create_ball(spawn_marker.global_position)
 	next_ball = create_ball(next_ball_marker.global_position)

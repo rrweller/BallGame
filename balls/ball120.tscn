@@ -8,6 +8,7 @@ radius = 60.0
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
 gravity_scale = 0.5
+max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_oedgx")
 metadata/point = 128
