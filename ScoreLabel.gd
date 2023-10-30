@@ -1,16 +1,12 @@
 extends Label
-var score = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var current_score = 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready() -> void:
+	SignalBus.ball_removed.connect(update_score)
 
-func addscore(point):
-	score += point
-	self.text = "Score: %d" % score
-	print("Score is now: ", score)
+
+func update_score(size: int):
+	current_score += size * size
+	text = str(current_score)

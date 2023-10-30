@@ -6,12 +6,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qh1w8"]
 radius = 24.0
 
-[node name="Ball" type="RigidBody2D"]
+[node name="Ball" type="RigidBody2D" groups=["balls"]]
 gravity_scale = 0.5
 max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_vy2ko")
 metadata/point = 4
+metadata/size = 2
 
 [node name="BallCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qh1w8")
