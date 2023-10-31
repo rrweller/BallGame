@@ -8,6 +8,7 @@
 radius = 32.0
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
+mass = 0.24
 physics_material_override = ExtResource("1_pfguq")
 gravity_scale = 0.2
 max_contacts_reported = 10

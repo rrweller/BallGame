@@ -1,23 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://ntfnjfy7o0m"]
 
-[ext_resource type="Texture2D" uid="uid://drqdfsopsaua2" path="res://balls/ball88.png" id="1_hdcw5"]
-[ext_resource type="Script" path="res://balls/ball88.gd" id="1_inpss"]
 [ext_resource type="PhysicsMaterial" uid="uid://be3718lm5u8ou" path="res://ball_physics_mat.tres" id="1_nsgia"]
+[ext_resource type="Script" path="res://balls/ball92.gd" id="2_rtm08"]
+[ext_resource type="Texture2D" uid="uid://6wg8vdy7sq7s" path="res://balls/ball92.png" id="3_cep6v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qh1w8"]
-radius = 44.0
+radius = 46.0
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
-mass = 1.1
+mass = 0.28
 physics_material_override = ExtResource("1_nsgia")
 gravity_scale = 0.2
 max_contacts_reported = 10
 contact_monitor = true
-script = ExtResource("1_inpss")
+script = ExtResource("2_rtm08")
 metadata/size = 5
 
 [node name="BallCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qh1w8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_hdcw5")
+texture = ExtResource("3_cep6v")

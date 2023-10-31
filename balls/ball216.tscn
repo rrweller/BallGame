@@ -8,7 +8,7 @@
 radius = 108.0
 
 [node name="Ball" type="RigidBody2D" groups=["balls"]]
-mass = 1.2
+mass = 0.38
 physics_material_override = ExtResource("1_amxc8")
 gravity_scale = 0.2
 contact_monitor = true

@@ -80,7 +80,7 @@ func disable_physics():
 	collision_mask = 0
 
 func enable_physics():
-	gravity_scale = 0.5
+	gravity_scale = 0.75
 	collision_layer = 1
 	collision_mask = 1
 	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dark20lsqf1w5"
-path="res://.godot/imported/ball76.png-eb945e9b581e840959e61fa8a4b0cbfd.ctex"
+uid="uid://cxdmmoaonyc86"
+path="res://.godot/imported/ball80.png-4531366ef4adb0732b186fe39fe15eb9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://balls/ball76.png"
-dest_files=["res://.godot/imported/ball76.png-eb945e9b581e840959e61fa8a4b0cbfd.ctex"]
+source_file="res://balls/ball80.png"
+dest_files=["res://.godot/imported/ball80.png-4531366ef4adb0732b186fe39fe15eb9.ctex"]
 
 [params]
 

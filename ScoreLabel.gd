@@ -10,4 +10,3 @@ func _ready() -> void:
 func update_score(ballsize: int):
 	current_score += ballsize * ballsize
 	text = "Score: %d" % current_score
-	print("Score is now: ", current_score)
