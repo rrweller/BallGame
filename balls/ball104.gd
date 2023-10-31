@@ -29,7 +29,7 @@ func handle_collision(body):
 	if thisball_radius != otherball_radius:
 		#print("Balls were not the same size, not merging")
 		return
-	
+	SignalBus.playSound.emit("rightinthere")
 	body.queue_free()
 	queue_free()
 	

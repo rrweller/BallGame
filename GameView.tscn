@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://cywsbf0b3jj0f"]
 
 [ext_resource type="Script" path="res://GameView.gd" id="1_88n8s"]
-[ext_resource type="Texture2D" uid="uid://c1yt4ihs1rcr0" path="res://topbar.png" id="2_ivt66"]
 [ext_resource type="Script" path="res://ScoreLabel.gd" id="2_rxoix"]
+[ext_resource type="Texture2D" uid="uid://cflenuldmcbk6" path="res://finishbar.png" id="2_y3f8y"]
 
 [sub_resource type="Environment" id="Environment_07ikw"]
 background_mode = 1
@@ -13,8 +13,8 @@ background_color = Color(0.890196, 0.282353, 0.407843, 1)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kewdj"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_koj44"]
-a = Vector2(400, 0)
-b = Vector2(400, -550)
+a = Vector2(350, 0)
+b = Vector2(350, -550)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6kyou"]
 
@@ -29,7 +29,7 @@ a = Vector2(0, -550)
 b = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2esk"]
-size = Vector2(400, 12)
+size = Vector2(350, 8)
 
 [sub_resource type="FontFile" id="FontFile_vxnmw"]
 cache/0/16/0/ascent = 0.0
@@ -358,7 +358,7 @@ camera_attributes = SubResource("CameraAttributesPhysical_o7okm")
 metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="Box"]
-points = PackedVector2Array(0, -550, 0, 0, 400, 0, 400, -550)
+points = PackedVector2Array(0, -550, 0, 0, 350, 0, 350, -550)
 width = 4.0
 
 [node name="RightWall" type="StaticBody2D" parent="Box/Line2D"]
@@ -386,15 +386,15 @@ one_way_collision_margin = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box/FinishBar"]
 z_index = -1
-position = Vector2(200, -506)
+position = Vector2(175, -504)
 shape = SubResource("RectangleShape2D_i2esk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Box/FinishBar"]
-position = Vector2(200, -506)
-texture = ExtResource("2_ivt66")
+position = Vector2(175, -504)
+texture = ExtResource("2_y3f8y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(200, -300)
+offset = Vector2(150, -300)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -413,9 +413,9 @@ vertical_alignment = 1
 script = ExtResource("2_rxoix")
 
 [node name="NextBall" type="Label" parent="CanvasLayer"]
-offset_left = 482.0
+offset_left = 446.0
 offset_top = -500.0
-offset_right = 587.0
+offset_right = 551.0
 offset_bottom = -463.0
 text = "Next Ball"
 label_settings = SubResource("LabelSettings_5tyk5")
@@ -437,4 +437,4 @@ position = Vector2(100, -500)
 position = Vector2(200, -552)
 
 [node name="NextBallMarker" type="Marker2D" parent="."]
-position = Vector2(535, -400)
+position = Vector2(500, -400)

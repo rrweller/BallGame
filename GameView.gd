@@ -16,8 +16,11 @@ var current_ball
 var next_ball
 var weights = []
 var is_game_over = false
-
 var score = 0
+
+var sound_player := AudioStreamPlayer.new()
+var bloop = load("res://sounds/bloop.mp3")
+var rightinthere = load("res://sounds/rightinthere.mp3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,11 +50,13 @@ func _ready():
 	#create array of decreasing spawn weights
 	for i in range(ball_scenes.size()):
 		weights.append(max_size_spawnable * (ball_scenes.size() - i))
-	print(weights)
 	
 	current_ball = create_ball(spawn_marker.global_position)
 	next_ball = create_ball(next_ball_marker.global_position)
 	SignalBus.collided.connect(detect_game_over)
+	SignalBus.playSound.connect(play_sound)
+	
+	add_child(sound_player)
 	
 	set_process_input(true)
 	set_process(true)
@@ -80,7 +85,6 @@ func create_ball(ball_pos):
 			weights[i] += 1
 			if weights[i] > (max_size_spawnable * max_size_spawnable):
 				weights[i] = max_size_spawnable * max_size_spawnable
-		print(weights)
 		return ball
 	else:
 		print("Error with ball_scenes.size()")
@@ -98,6 +102,17 @@ func drop_ball():
 	await get_tree().create_timer(1).timeout
 	current_ball = next_ball
 	next_ball = create_ball(next_ball_marker.global_position)
+	
+func play_sound(sound: String):
+	if sound_player.playing:
+		sound_player.stop()
+	if sound == "bloop":
+		sound_player.stream = bloop
+	elif sound == "rightinthere":
+		sound_player.stream = rightinthere
+		
+	if sound_player:
+		sound_player.play()
 
 func detect_game_over(height: float):
 	if height < full_marker.global_position.y:
