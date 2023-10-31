@@ -8,8 +8,13 @@ var ball_scenes = []
 var ball_sizes = []
 var BallScene
 
+var sound_player := AudioStreamPlayer.new()
+
+var bloop = load("res://sounds/bloop.mp3")
+
 func _ready() -> void:
 	size = self.get_meta("size")
+	add_child(sound_player)
 	load_balls()
 	body_entered.connect(handle_collision)
 
@@ -27,12 +32,16 @@ func handle_collision(body):
 	#print("COLLISION: Ball of size: ", thisball_radius, " collided with ball of size ", otherball_radius)
 	
 	if thisball_radius != otherball_radius:
+		play_sound(bloop)
 		#print("Balls were not the same size, not merging")
 		return
 	
+	print("Collision")
+	play_sound(bloop)
+	print("playing sound")
+		
 	body.queue_free()
 	queue_free()
-	
 	if thisball_radius < ball_sizes[-1]["radius"]:
 		var ball_index = -1
 		for i in range(ball_sizes.size()):
@@ -73,6 +82,10 @@ func load_balls():
 
 	for i in range(ball_sizes.size()):
 		ball_scenes.append(ball_sizes[i]["scene"])		
+
+func play_sound(sound):
+	sound_player.stream = sound
+	sound_player.play()
 
 func disable_physics():
 	gravity_scale = 0
